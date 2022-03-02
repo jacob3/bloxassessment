@@ -1,6 +1,7 @@
 import * as types from './types/overviewActionsTypes';
 import * as actionTypes from '../actionTypes';
 import { CoinType } from '../../types/coin';
+import { OverviewSortingTypesEnum } from '../../types/overviewSortingTypesEnum';
 
 export const setStartloadingCoins = (): types.SetStartLoadingCoins => {
     return {
@@ -18,5 +19,12 @@ export const setAllCoins = (coins: CoinType[]): types.SetAllCoins => {
     return {
         type: actionTypes.SET_ALL_COINS,
         coins
+    };
+};
+
+export const setSorting = (sorting: OverviewSortingTypesEnum): types.SetSorting => {
+    return {
+        type: actionTypes.SET_SORTING,
+        sorting
     };
 };

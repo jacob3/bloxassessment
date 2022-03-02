@@ -1,0 +1,12 @@
+@import "../../../common/scss/variables";
+
+.searchField {
+  width: 250px;
+  padding: 10px 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border-color: $grey;
+  border-style: solid;
+  border-width: 2px;
+}

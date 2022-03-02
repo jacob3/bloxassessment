@@ -1,5 +1,7 @@
 import React, { ReactElement } from 'react';
-import classes from './TableItem.scss';
+import classes from './TableRow.scss';
+import classNames from 'classnames';
+import { triangleDown, triangleUp } from '../../../common/ts/variables';
 import { CoinType } from '../../../types/coin';
 
 export type TableItemProps = {
@@ -8,12 +10,27 @@ export type TableItemProps = {
 
 const TableItem: React.FC<TableItemProps> = (props: TableItemProps): ReactElement => {
     const { icon, shortName, longName, priceChangePercentage, price } = props.coin;
+
+    const positivePricePercentage = priceChangePercentage > 0;
+    const negativePricePercentage = priceChangePercentage < 0;
+
     return (
         <div className={classes.coin}>
             <img className={classes.icon} src={icon} alt={shortName} />
-            <div className={classes.shortName}>{shortName}</div>
+            <div className={classes.shortName}>
+                {shortName}
+                <div className={classes.mobileLongName}>{longName}</div>
+            </div>
             <div className={classes.longName}>{longName}</div>
-            <div className={classes.priceChangePercentage}>
+            <div
+                className={classNames(
+                    classes.priceChangePercentage,
+                    positivePricePercentage && classes.green,
+                    negativePricePercentage && classes.red
+                )}
+            >
+                {positivePricePercentage && triangleUp}
+                {negativePricePercentage && triangleDown}
                 {Intl.NumberFormat('nl', {
                     style: 'percent',
                     minimumFractionDigits: 1,

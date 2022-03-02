@@ -1,31 +1,36 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { RootState } from '../../store/storeSetup';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCoins } from '../../store/actions/overviewActions';
+import { getAllCoins, setStartloadingCoins } from '../../store/actions/overviewActions';
 import classes from './Overview.scss';
 import { CoinType } from '../../types/coin';
-import TableItem from './TableItem/TableItem';
-import TableHeader from './TableHeader/TableHeader';
+import TableRow from './TableRow/TableRow';
+import SearchField from './SearchField/SearchField';
+import { sortAndFilter } from './sortAndFilter';
 
 const Overview: React.FC = (): ReactElement => {
-    // todo: Loading screen
-    // todo: Design
-    // todo: flex design (table) is with preset pixel width per column - should be changed
-
-    const { isLoading, coins } = useSelector((state: RootState) => state.overview);
+    const { coins, activeSorting, isLoading } = useSelector((state: RootState) => state.overview);
     const dispatch = useDispatch();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredAndSortedCoins, setFilteredAndSortedCoins] = useState(coins);
 
     useEffect(() => {
-        dispatch(getAllCoins());
+        dispatch(setStartloadingCoins());
+        const loadingTimer = setTimeout(() => dispatch(getAllCoins()), 1000); // this timer is totally unnecessary, but since the API is so damn fast and I want to show off with my React skills and skeleton loading screen, it's there :)
+        return () => clearTimeout(loadingTimer);
     }, []);
+
+    useEffect(() => {
+        setFilteredAndSortedCoins(sortAndFilter(coins, activeSorting, searchTerm));
+    }, [coins, activeSorting, searchTerm]);
 
     return (
         <div className={classes.container}>
-            {isLoading && <div>loading...</div>}
+            <SearchField onChange={(q) => setSearchTerm(q)} isLoading={isLoading} />
             <div className="coins">
-                <TableHeader />
-                {coins.map((coin: CoinType) => (
-                    <TableItem key={coin.shortName} coin={coin} />
+                <TableRow isLoading={isLoading} activeSorting={activeSorting} />
+                {filteredAndSortedCoins.map((coin: CoinType) => (
+                    <TableRow key={coin.shortName} coin={coin} />
                 ))}
             </div>
         </div>

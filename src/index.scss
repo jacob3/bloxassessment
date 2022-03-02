@@ -1,7 +1,13 @@
+@import './common/scss/variables';
+@import './common/scss/fonts';
+
 html, body {
   margin: 0;
   height: 100%;
   width: 100%;
+  font-family: $fontPrimary;
+  font-size: $defaultFontSize;
+  color: $primaryTextColor;
 }
 
 :global {
