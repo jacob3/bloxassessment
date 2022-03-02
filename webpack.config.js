@@ -119,11 +119,10 @@ module.exports = (env, options) => {
         },
         devServer: {
             compress: true,
-            port: 443,
+            port: 8080,
             host: '0.0.0.0',
             historyApiFallback: true,
-            allowedHosts: 'all',
-            https: true
+            allowedHosts: 'all'
         }
     };
 
