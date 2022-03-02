@@ -19,3 +19,8 @@ export type SetSorting = {
     type: typeof actionTypes.SET_SORTING;
     sorting: OverviewSortingTypesEnum;
 };
+
+export type SetError = {
+    type: typeof actionTypes.SET_ERROR;
+    error: boolean;
+};

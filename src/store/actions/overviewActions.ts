@@ -28,3 +28,10 @@ export const setSorting = (sorting: OverviewSortingTypesEnum): types.SetSorting 
         sorting
     };
 };
+
+export const setError = (error: boolean): types.SetError => {
+    return {
+        type: actionTypes.SET_ERROR,
+        error
+    };
+};

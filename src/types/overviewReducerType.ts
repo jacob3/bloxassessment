@@ -3,6 +3,8 @@ import { OverviewSortingTypesEnum } from './overviewSortingTypesEnum';
 
 export type OverviewReducerState = {
     coins: CoinType[];
-    isLoading: boolean;
     activeSorting: OverviewSortingTypesEnum | undefined;
+    initialized: boolean;
+    isLoading: boolean;
+    error: boolean;
 };

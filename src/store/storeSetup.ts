@@ -2,9 +2,11 @@ import { applyMiddleware, combineReducers, createStore, Middleware } from 'redux
 import createSagaMiddleware from 'redux-saga';
 import { saga } from './sagas';
 import overviewReducer from './reducers/overviewReducer';
+import toasterReducer from './reducers/toasterReducer';
 
 const reducer = combineReducers({
-    overview: overviewReducer
+    overview: overviewReducer,
+    toaster: toasterReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();
