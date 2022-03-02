@@ -15,7 +15,7 @@ const TableItem: React.FC<TableItemProps> = (props: TableItemProps): ReactElemen
     const negativePricePercentage = priceChangePercentage < 0;
 
     return (
-        <div className={classes.coin}>
+        <div className={classNames(classes.coin, classes.coinItem)}>
             <img className={classes.icon} src={icon} alt={shortName} />
             <div className={classes.shortName}>
                 {shortName}

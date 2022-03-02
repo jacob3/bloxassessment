@@ -49,6 +49,20 @@
     text-align: right;
   }
 
+  @media only screen and (max-width: 700px) {
+    .longName {
+      display: none;
+    }
+    .mobileLongName {
+      display: block;
+    }
+    .priceChangePercentage {
+      display: none;
+    }
+  }
+}
+
+.coinItem {
   @media only screen and (min-width: 700px) {
     cursor: pointer;
     -webkit-transition: -webkit-transform .2s ease-out;
@@ -56,7 +70,7 @@
     -o-transition: -o-transform .2s ease-out;
     -ms-transition: -ms-transform .2s ease-out;
     transition: transform .2s ease-out;
-    
+
     &:hover {
       background-color: #fbfbfb;
       -webkit-transform: scale(1.01);
@@ -71,17 +85,6 @@
       -o-transform: scale(2);
       transform: scale(2);
       border-bottom: 1px solid $grey;
-    }
-  }
-  @media only screen and (max-width: 700px) {
-    .longName {
-      display: none;
-    }
-    .mobileLongName {
-      display: block;
-    }
-    .priceChangePercentage {
-      display: none;
     }
   }
 }
